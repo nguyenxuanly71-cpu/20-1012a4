@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thư gửi những người phụ nữ tuyệt vời</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #fdeff9, #ec38bc);
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+      text-align: center;
+      padding: 40px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      color: #b8007d;
+    }
+
+    .envelope {
+      margin-top: 30px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    .typing-container {
+      max-width: 700px;
+      margin: 50px auto;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      min-height: 200px;
+      position: relative;
+      z-index: 1;
+    }
+
+    #typing {
+      font-size: 1.2em;
+      white-space: pre-line;
+      border-right: 2px solid #333;
+      display: inline-block;
+      animation: blinkCursor 0.8s steps(40) infinite normal;
+    }
+
+    @keyframes blinkCursor {
+      0% { border-color: transparent; }
+      50% { border-color: #333; }
+      100% { border-color: transparent; }
+    }
+
+    /* Trái tim */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: floatHeart 6s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    .heart-beat {
+      animation: heartbeat 1.5s infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1) rotate(45deg); }
+      50% { transform: scale(1.3) rotate(45deg); }
+    }
+
+    @keyframes floatHeart {
+      0% {
+        bottom: -20px;
+        opacity: 0;
+        transform: translateX(0) scale(1) rotate(45deg);
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        bottom: 110%;
+        transform: translateX(-50px) scale(1.2) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💌 Thư gửi những người phụ nữ tuyệt vời 💌</h1>
+  <img class="envelope" src="https://cdn-icons-png.flaticon.com/512/2099/2099192.png" width="150" alt="Lá thư">
+
+  <div class="typing-container">
+    <div id="typing"></div>
+  </div>
+
+  <!-- Tạo nhiều trái tim đập -->
+  <script>
+    const message = `
+Nhân ngày Phụ nữ Việt Nam 20/10,
+Chúng em – tập thể các bạn nam lớp 12A4 – xin gửi tới
+cô giáo chủ nhiệm Nguyễn Thị Thu Thủy
+cùng toàn thể các bạn nữ trong lớp
+những lời chúc chân thành và tốt đẹp nhất!
+
+🌸 Chúc cô luôn mạnh khỏe, tràn đầy năng lượng
+và giữ mãi ngọn lửa đam mê với nghề giáo cao quý.
+
+🌸 Gửi đến các bạn nữ 12A4:
+Chúc các bạn luôn xinh đẹp, học giỏi, vui vẻ
+và tự tin theo đuổi ước mơ của mình.
+
+💖 Cảm ơn vì đã luôn đồng hành, sẻ chia
+và cùng nhau tạo nên những kỷ niệm tuyệt vời của năm học cuối cấp.
+
+Chúc 20/10 thật nhiều niềm vui, nụ cười và yêu thương!
+
+Thân mến,
+Các bạn nam lớp 12A4
+`;
+
+    let index = 0;
+    const speed = 30;
+    const typingElement = document.getElementById("typing");
+
+    function type() {
+      if (index < message.length) {
+        typingElement.innerHTML += message.charAt(index);
+        index++;
+        setTimeout(type, speed);
+      }
+    }
+
+    window.onload = () => {
+      setTimeout(type, 1000);
+
+      // Tạo trái tim ngẫu nhiên bay lên
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart heart-beat";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 7000);
+      }, 500);
+    };
+  </script>
+
+</body>
+</html>
